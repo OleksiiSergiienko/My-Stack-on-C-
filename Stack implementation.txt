@@ -1,0 +1,185 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace HomeTest_3
+{
+    class Stack
+    {
+        private int[] arr;
+        private int Count;
+        private int Capacity;
+        public Stack (int value)
+        {
+            Capacity = value;
+            arr = new int[Capacity];
+            Count = 0;
+        }
+        public void Print ()
+        {
+            for (int i = 0; i < Capacity; i++)
+            {
+                Console.Write(arr[i] + "; ");
+            }
+            Console.WriteLine();
+        }
+        public void Push(int indexValue)
+        {
+            if (Count == Capacity)
+            {
+                Console.WriteLine("Error!!! Stack is full!!!"); 
+            }
+            else
+            {
+                arr[Count] = indexValue;
+                Count++;
+                Console.WriteLine("Value added to Stack");
+            }
+        }
+         public int Pop()
+        {
+            if (Count != 0)
+            {
+                int temp = arr [Count-1];
+                Count--;
+                arr[Count] = 0;
+                return temp;
+            }
+            return -1;
+        }
+        public int Peek()
+        {
+            if (Count != 0)
+            {
+                return arr[Count - 1];
+            }
+            return -1;
+        }
+        public int GetCapacity
+        {
+            get
+            {
+                return Capacity;
+            }
+        }
+        public int GetCount
+        {
+            get
+            {
+                return Count;
+            }
+        }
+        public bool IsEmpty()
+        {
+           if (Count == 0)
+            return true;
+            return false;
+        }
+        public bool IsFull()
+        {
+            if (Count == Capacity)
+            return true;
+            return false;
+        }
+        public override string ToString()
+        {
+         return $"Capacity = {GetCapacity}\nCount = {GetCount}\nIsEmpty = {IsEmpty()}\nIsFull = {IsFull()}";
+        }
+
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            Stack st = new Stack(10);
+            while (true)
+            {
+                Console.WriteLine("You are working with a Stack of 10 elements!");
+                Console.WriteLine("Make a stack selection:"+"\n");
+                Console.WriteLine("1. Push! (add item to stack)");
+                Console.WriteLine("2. Peek! (getting item, it is NOT removed from the Stack)");
+                Console.WriteLine("3. Pop! (getting the item, it is removed from the Stack)");
+                Console.WriteLine("4. IsEmpty! (checking if the Stack is empty)");
+                Console.WriteLine("5. IsFull! (checking if the Stack is full)");
+                Console.WriteLine("6. Capacity! (getting total Stack capacity)");
+                Console.WriteLine("7. Count! (getting the number of items in the Stack)");
+                Console.WriteLine("8. Print! (stack information line)");
+                Console.WriteLine("9. End! (exit)");
+                int answer = Convert.ToInt32(Console.ReadLine());
+                Console.Clear();
+                switch (answer)
+                {
+                    case 1:
+                        Console.WriteLine("Please enter value to add to stack:");
+                        int value = Convert.ToInt32(Console.ReadLine());
+                        Console.Clear();
+                        st.Push(value);
+                        Console.WriteLine("\nNext -> Enter");
+                        Console.ReadKey();
+                        break;
+                    case 2:
+                        int temp = st.Peek();
+                        if ( temp == -1)
+                        { Console.WriteLine("Stack is empty!"); }
+                        else
+                        { Console.WriteLine("Top item on the stack = " + temp); }
+                        Console.WriteLine("\nNext -> Enter");
+                        Console.ReadKey();
+                        break;
+                    case 3:
+                        temp = st.Pop();
+                        if (temp == -1)
+                        { Console.WriteLine("Stack is empty!"); }
+                        else
+                        { Console.WriteLine("Top item on the stack = " + temp); }
+                        Console.WriteLine("\nNext -> Enter");
+                        Console.ReadKey();
+                        break;
+                    case 4:
+                        if (st.IsEmpty() != true)
+                        {
+                            Console.WriteLine("Stack not empty!");
+                        }
+                        else { Console.WriteLine("Stack is empty!"); }
+                        Console.WriteLine("\nNext -> Enter");
+                        Console.ReadKey();
+                        break;
+                    case 5:
+                        if (st.IsFull() != true)
+                        {
+                            Console.WriteLine("Stack is not full!");
+                        }
+                        else { Console.WriteLine("Stack is full!"); }
+                        Console.WriteLine("\nNext -> Enter");
+                        Console.ReadKey();
+                        break;
+                    case 6:
+                        Console.WriteLine("Capacity = " + st.GetCapacity);
+                        Console.WriteLine("\nNext -> Enter");
+                        Console.ReadKey();
+                        break;
+                    case 7:
+                        Console.WriteLine("Count = " + st.GetCount);
+                        Console.WriteLine("\nNext -> Enter");
+                        Console.ReadKey();
+                        break;
+                    case 8:
+                        Console.WriteLine(st.ToString());
+                        Console.WriteLine("\nNext -> Enter");
+                        Console.ReadKey();
+                        break;
+                    case 9:
+                        Console.Clear();
+                        Console.WriteLine("Thanks for working with our stack!");
+                        Console.WriteLine("Exit -> Enter");
+                        Console.ReadKey();
+                        return;
+                }
+                Console.Clear();
+            }
+        }
+    }
+}
